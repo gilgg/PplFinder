@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import Text from "components/Text";
 import Spinner from "components/Spinner";
-import CheckBox from "components/CheckBox";
 import IconButton from "@material-ui/core/IconButton";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import * as S from "./style";
+import axios from "axios";
 
 const UserList = ({ users, isLoading }) => {
+  const dispatch = useDispatch();
   const [hoveredUserId, setHoveredUserId] = useState();
 
   const handleMouseEnter = (index) => {
@@ -17,14 +19,33 @@ const UserList = ({ users, isLoading }) => {
     setHoveredUserId();
   };
 
+  const updateDB = async (user, action) => {
+    let fav;
+
+    if (action === "add") {
+      fav = (await axios.post(`${process.env.REACT_APP_API_URL}/favorites`, { user })).data;
+      dispatch({ type: "ADD_FAV", fav });
+    } else {
+      fav = (await axios.delete(`${process.env.REACT_APP_API_URL}/favorites/${user._id}`))
+        .data;
+      dispatch({ type: "REMOVE_FAV", fav });
+    }
+    return fav;
+  };
+
+  const handleFavClick = async (index) => {
+    users[index].isFav = !users[index].isFav;
+
+    if (users[index].isFav) {
+      const favUser = await updateDB(users[index], "add");
+      users[index] = favUser;
+    } else {
+      await updateDB(users[index], "delete");
+    }
+  };
+
   return (
     <S.UserList>
-      <S.Filters>
-        <CheckBox value="BR" label="Brazil" />
-        <CheckBox value="AU" label="Australia" />
-        <CheckBox value="CA" label="Canada" />
-        <CheckBox value="DE" label="Germany" />
-      </S.Filters>
       <S.List>
         {users.map((user, index) => {
           return (
@@ -33,21 +54,21 @@ const UserList = ({ users, isLoading }) => {
               onMouseEnter={() => handleMouseEnter(index)}
               onMouseLeave={handleMouseLeave}
             >
-              <S.UserPicture src={user?.picture.large} alt="" />
+              <S.UserPicture src={user?.picture} alt="" />
               <S.UserInfo>
                 <Text size="22px" bold>
-                  {user?.name.title} {user?.name.first} {user?.name.last}
+                  {user?.nameTitle} {user?.nameFirst} {user?.nameLast}
                 </Text>
                 <Text size="14px">{user?.email}</Text>
                 <Text size="14px">
-                  {user?.location.street.number} {user?.location.street.name}
+                  {user?.streetNumber} {user?.streetName}
                 </Text>
                 <Text size="14px">
-                  {user?.location.city} {user?.location.country}
+                  {user?.city} {user?.country}
                 </Text>
               </S.UserInfo>
-              <S.IconButtonWrapper isVisible={index === hoveredUserId}>
-                <IconButton>
+              <S.IconButtonWrapper isVisible={index === hoveredUserId || user.isFav}>
+                <IconButton onClick={() => handleFavClick(index)}>
                   <FavoriteIcon color="error" />
                 </IconButton>
               </S.IconButtonWrapper>

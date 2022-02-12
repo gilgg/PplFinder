@@ -3,20 +3,23 @@ import Text from "components/Text";
 import UserList from "components/UserList";
 import { usePeopleFetch } from "hooks";
 import * as S from "./style";
+import * as SGeneral from "../style";
+import CheckboxesRow from "components/CheckBox/CheckboxesRow";
 
 const Home = () => {
   const { users, isLoading } = usePeopleFetch();
 
   return (
     <S.Home>
-      <S.Content>
-        <S.Header>
+      <SGeneral.Content>
+        <SGeneral.Header>
           <Text size="64px" bold>
             PplFinder
           </Text>
-        </S.Header>
+        </SGeneral.Header>
+        <CheckboxesRow />
         <UserList users={users} isLoading={isLoading} />
-      </S.Content>
+      </SGeneral.Content>
     </S.Home>
   );
 };
