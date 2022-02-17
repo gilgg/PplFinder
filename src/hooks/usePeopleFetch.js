@@ -1,29 +1,48 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import useFavoritesFetch from "./useFavoritesFetch";
 
-export const usePeopleFetch = () => {
-  const dispatch = useDispatch();
+export const usePeopleFetch = (dispatch, pageNum) => {
   const nations = useSelector((state) => state.nations);
-  const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(async () => {
-    const favs = (await axios.get(`${process.env.REACT_APP_API_URL}/favorites`)).data;
-    dispatch({ type: "INIT_FAVS", favs });
-  }, []);
+  useFavoritesFetch();
 
   useEffect(() => {
-    fetchUsers();
+    fetchUsersByNation();
   }, [nations]);
 
-  async function fetchUsers() {
+  useEffect(() => {
+    if (pageNum > 1) {
+      fetchUsersByPage();
+    }
+  }, [pageNum]);
+
+  const fetchUsers = async () => {
     setIsLoading(true);
-    const response = await axios.post(`${process.env.REACT_APP_API_URL}`, { nations });
+    const response = (
+      await axios.post(`${process.env.REACT_APP_API_URL}`, {
+        nations,
+        pageNum,
+      })
+    ).data;
     setIsLoading(false);
-    setUsers(response.data);
+    return response;
+  };
+
+  async function fetchUsersByNation() {
+    const response = await fetchUsers();
+    dispatch({ type: "REMOVE_ALL_USERS" });
+    dispatch({ type: "ADD_USERS", users: response });
   }
 
-  return { users, isLoading, fetchUsers };
+  async function fetchUsersByPage() {
+    if (pageNum > 1) {
+      const response = await fetchUsers();
+      dispatch({ type: "ADD_USERS", users: response });
+    }
+  }
+
+  return { isLoading };
 };

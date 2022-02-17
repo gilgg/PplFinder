@@ -17,8 +17,16 @@ export const List = styled.div`
 
 export const User = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   gap: 16px;
+`;
+
+export const UserCard = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
 `;
 
 export const UserInfo = styled.div`
@@ -35,9 +43,11 @@ export const UserPicture = styled.img`
   border-radius: 45%;
 `;
 
-export const SpinnerWrapper = styled.div`
+export const ArrowIconWrapper = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
+  cursor: pointer;
 `;
 
 export const IconButtonWrapper = styled.div`

@@ -2,6 +2,8 @@ import { createStore } from "redux";
 
 const initState = {
   nations: [],
+  allUsers: [],
+  filteredUsers: [],
   favs: [],
 };
 
@@ -14,6 +16,8 @@ const reducer = (state = initState, action) => {
       newNationsArr.push(action.nat);
       return {
         nations: newNationsArr,
+        filteredUsers: [],
+        allUsers: [...state.allUsers],
         favs: [...state.favs],
       };
     case "REMOVE_NATION":
@@ -21,7 +25,36 @@ const reducer = (state = initState, action) => {
       newNationsArr = nationsCopy.filter((nation) => nation !== action.nat);
       return {
         nations: newNationsArr,
+        filteredUsers: [],
+        allUsers: [...state.allUsers],
         favs: [...state.favs],
+      };
+    case "INIT_USERS":
+      return {
+        nations: state.nations,
+        allUsers: action.users,
+        favs: state.favs,
+      };
+    case "ADD_USERS":
+      return {
+        nations: state.nations,
+        filteredUsers: [],
+        allUsers: [...state.allUsers, ...action.users],
+        favs: state.favs,
+      };
+    case "REMOVE_ALL_USERS":
+      return {
+        nations: state.nations,
+        filteredUsers: [],
+        allUsers: [],
+        favs: state.favs,
+      };
+    case "SET_FILTERED_USERS":
+      return {
+        nations: state.nations,
+        filteredUsers: action.users,
+        allUsers: [],
+        favs: state.favs,
       };
     case "INIT_FAVS":
       return {
@@ -33,6 +66,8 @@ const reducer = (state = initState, action) => {
       newFavsArr.push(action.fav);
       return {
         nations: state.nations,
+        filteredUsers: [...state.filteredUsers],
+        allUsers: [...state.allUsers],
         favs: newFavsArr,
       };
     case "REMOVE_FAV":
@@ -40,6 +75,8 @@ const reducer = (state = initState, action) => {
       newFavsArr = favsCopy.filter((fav) => fav._id !== action.fav._id);
       return {
         nations: state.nations,
+        filteredUsers: [...state.filteredUsers],
+        allUsers: [...state.allUsers],
         favs: newFavsArr,
       };
     default:

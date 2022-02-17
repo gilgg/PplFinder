@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import * as S from "./style";
 import { useDispatch } from "react-redux";
 
-const CheckBox = ({ isChecked, onChange, label, value }) => {
+const CheckBox = ({ isChecked, onChange, label, value, setScrollToTop, setPageNum }) => {
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
@@ -13,6 +13,8 @@ const CheckBox = ({ isChecked, onChange, label, value }) => {
     } else {
       dispatch({ type: "REMOVE_NATION", nat: value });
     }
+    setScrollToTop(true);
+    setPageNum(1);
     onChange && onChange(value);
   };
   return (

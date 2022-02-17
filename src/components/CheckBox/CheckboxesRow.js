@@ -2,15 +2,39 @@ import React from "react";
 import CheckBox from "components/CheckBox";
 import * as S from "./style";
 
-
-const CheckboxesRow = () => {
+const CheckboxesRow = ({ setScrollToTop, setPageNum }) => {
   return (
     <S.Filters>
-      <CheckBox value="BR" label="Brazil" />
-      <CheckBox value="AU" label="Australia" />
-      <CheckBox value="CA" label="Canada" />
-      <CheckBox value="DE" label="Germany" />
-      <CheckBox value="FR" label="France" />
+      <CheckBox
+        value="BR"
+        label="Brazil"
+        setScrollToTop={setScrollToTop}
+        setPageNum={setPageNum}
+      />
+      <CheckBox
+        value="AU"
+        label="Australia"
+        setScrollToTop={setScrollToTop}
+        setPageNum={setPageNum}
+      />
+      <CheckBox
+        value="CA"
+        label="Canada"
+        setScrollToTop={setScrollToTop}
+        setPageNum={setPageNum}
+      />
+      <CheckBox
+        value="DE"
+        label="Germany"
+        setScrollToTop={setScrollToTop}
+        setPageNum={setPageNum}
+      />
+      <CheckBox
+        value="FR"
+        label="France"
+        setScrollToTop={setScrollToTop}
+        setPageNum={setPageNum}
+      />
     </S.Filters>
   );
 };
