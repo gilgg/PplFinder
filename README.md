@@ -1,72 +1,53 @@
-# Ppl Finder
+![PplFinder Banner](https://i.ibb.co/4Nj46gJ/ppl-finder-banner.png)
 
-Welcome to the Ppl Finder application.
-This app is a simple application which displays randomly generated user information in a list, using the `randomuser.me` API.
+# Contents
 
-## Getting Started
+- [Overview](#overview-)
+- [Technologies](#technologies-)
+- [Screenshots](#screenshots-)
+- [Video](#video-)
 
-To get this app running locally all you need to do is:
+<br />
 
-1. Make sure you have a [Github](https://github.com) account
-2. [Fork this repository](https://github.com/powerlink/PplFinder) to your GitHub account.
-3. Clone your newly created repository
-4. In the created folder install the node modules `npm install`
-5. Run the app `npm start`
-6. Your local app should be available at `http://localhost:3000`
+# Overview 👋
 
-## Your Tasks
+PplFinder lets you find random people and add them to your favorites. You can also iew their location on a map, and filter by their origin countries.
 
-This project includes 2 main tasks, all of which are mandatory.\
-You can and should learn new skills during the process, you may consult with Google and friends but you will need to explain why you implemented what you implemented, so be responsible for your code.
+Note: For some reason the Infinite Scroll feature doesn't work online, but it does work locally. I didn't have the time to find out why before the deadline.
 
-### Task 1 - Filters
+> **You can take a look at the backend repo [here](https://github.com/gilgg/PplFinder-backend)**
 
-Above the list, there are several disfunctional checkboxes, which should add country filters to the user request, you need to make them work as follows:
+> **Go to [Website](https://gilgg.github.io/PplFinder/)**
 
-1. Leaving them all unchecked should display all countries.
-2. Checking one of the checkboxes should only fetch users from that specific country.
-3. Checking several checkboxes should fetch users from all of the selected countries.
+<br />
 
-#### Bonus:
+# Technologies 👨‍💻
 
-1. Add another country filter.
+![HTML Icon](https://i.ibb.co/9tyHGr7/html-logo.png, "HTML")
+![CSS Icon](https://i.ibb.co/b3QNSgX/css-logo.png, "CSS")
+![SASS Icon](https://i.ibb.co/2M5yfGb/sass-logo.png, "SASS")
+![JavaScript Icon](https://i.ibb.co/L5RS8g1/Group-11.png, "JavaScript")
+![React Icon](https://i.ibb.co/BBFKyz9/Group-9.png, "React")
+![Nodejs Icon](https://i.ibb.co/1KjfZ9L/Group-8.png, "Nodejs")
+![Express Icon](https://i.ibb.co/4J71gTL/express-logo.png, "Express")
+![MongoDB Icon](https://i.ibb.co/KXG94Kc/Group-10.png, "MongoDB")
 
-### Task 2 - Favorites
+<br />
 
-Each user displays a heart icon while hovered, you need to implement the following functionality:
+# Screenshots 🎮
 
-1. Add functionality which enables the user to select their favorite users.
-   - Should be persistent - refreshing or closing the site will not reset the favorites.
-2. Once a user is Favorited, the heart icon should stay visible even if the user is not currently being hovered over.
-3. Clicking on a favorite user's heart icon should unfavorite the user.
-4. Favorite Page\
-   4.1. The Navbar has a Favorites tab, which should navigate to a new Favorite Page once clicked.\
-   4.2. The Favorite Page should display all of the Favorited users.\
-   4.3. Clicking on a heart icon inside the favorite page should unfavorite the user, and remove it from the page.
+![PplFinder Main](https://i.ibb.co/2nRF6zr/ppl-finder-1.png)
 
-### Task 3 - Infinity Scroll
+<br />
 
-Implement an Infinity Scroll functionality, which would fetch additional users and add them to the list once scrolling all the way down.
+![PplFinder Favorites](https://i.ibb.co/k0sjYpc/ppl-finder-2.png)
 
-### Bonus - Your Personal Touch
+<br />
 
-- This is your chance to get creative. Add a new, **cool and innovative** feature to the app.
-- Feel free to delete, add, and refactor components as you see fit.
-  **Make sure** that the previous tasks still work.
+![PplFinder Filters](https://i.ibb.co/RjpNtjT/ppl-finder-3.png)
 
-## Tips / Notes
+<br />
 
-- All the code you'll change / add will be in the `/src` folder.
-- If you want to use `npm` modules for other parts, go for it - just make sure you know how they work under the hood.
+# Video 🎥
 
-#### Remember: this test is designed to see how you complete tasks that require self learning, not to test your existing knowledge.
-
-## Submitting your project
-
-After you've completed your tasks, and you are ready to submit it, do the following:
-
-1. Make sure all the code is committed and pushed
-2. Deploy your app using Github Pages.
-3. Send us an email with your repo link & deployed app url.
-
-## Good Luck!
+https://user-images.githubusercontent.com/96532357/154444257-5e8120f5-50bf-4902-b20f-06e37293081a.mp4
